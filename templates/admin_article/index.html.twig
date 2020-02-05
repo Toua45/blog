@@ -1,0 +1,27 @@
+{% extends 'layout_admin.html.twig' %}
+
+{% block title %}Hello AdminArticleController!{% endblock %}
+
+{% block body %}
+    <h1>Liste des articles</h1>
+<table>
+    <thead>
+    <tr>
+        <th>Title</th>
+        <th>Category</th>
+        <th>Picture</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for article in articles %}
+    <tr>
+        <td>{{ article.title }}</td>
+        <td><span style="color:{{ article.category.color ?? ''}}">{{ article.category.name ?? ''}}</span></td> {#affiche le nom de la catgory en partant d'un artcle, entre dans l'entité category et affiche le nom dans sa couleur, les ?? indque ou '' car le champ est null#}
+        <td><img src="{{ vich_uploader_asset(article, 'imageFile') }}" alt="{{ article.imageName }}" class="w-25"></td>
+        <th><a href="{{ path('admin_article_edit', {'slug': article.slug}) }}">edit</a></th>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends 'layout.html.twig' %}
+{% form_theme form 'bootstrap_4_layout.html.twig' %}
+
+{% block title %}Mon blog{% endblock %}
+
+{% block body %}
+
+    <div class="example-wrapper">
+        <h1>Mon blog</h1>
+
+        <div class="row">
+            <div class="col-12">
+                {{ form_start(form) }}
+                {{ form_widget(form) }}
+                <button class="btn btn-success">Search</button>
+                {{ form_end(form) }}
+            </div>
+        </div>
+        <hr/>
+        {% for article in articles %}
+            <article>
+                <h2><a href="{{ path('blog_show', {'slug':article.slug}) }}">{{ article.title }}</a>
+                </h2> {#au niveau du a href, permet de récupérer la route avec le parametre de l'id#}
+                <div class="badge"
+                     style="background-color: {{ article.category.color ?? '' }}">{{ article.category.name ?? '' }}</div>
+                <div>{{ article.date|date('Y-m-d H:i:s') }}</div> {# affiche la date et l'heure si le foramt en bdd est datetime#}
+            </article>
+        {% endfor %}
+    </div>
+{% endblock %}

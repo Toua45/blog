@@ -1,0 +1,15 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}Article {{ article.title }}{% endblock %}
+
+{% block body %}
+
+    <div>
+        <h1>{{ article.title }}</h1>
+                <div>{{ article.date|date('d/m/Y H:i:s') }}</div>
+        <div>
+            <img src="{{ vich_uploader_asset(article, 'imageFile') }}" alt="{{ article.imageName }}" class="w-25">
+        </div>
+        <p>{{ article.content|raw }}</p> {#le filtre raw permet de ne pas afficher le htmlentities#}
+    </div>
+{% endblock %}

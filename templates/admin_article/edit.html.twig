@@ -1,0 +1,21 @@
+{% extends 'layout_admin.html.twig' %}
+
+{% block title %}Edit Article{% endblock %}
+
+{% block body %}
+    <h1>Edit Article</h1>
+
+    <h1>Edit an article</h1>
+    {{ form_start(form) }}
+    {{ form_row(form.title) }}
+    {{ form_row(form.content) }}
+    <hr/>
+    {{ form_row(form.date) }}
+    {{ form_row(form.imageFile) }}
+    {{ form_row(form.category) }}
+    <button class="btn btn-success">update</button>
+    {{ form_end(form) }}
+
+    <a href="{{ path('admin_article') }}">back to list</a>
+
+{% endblock %}
